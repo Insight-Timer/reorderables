@@ -1140,6 +1140,14 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
       wrappedChildren.add(widget.footer);
     }
 
+
+    if (widget.controller != null) {
+      return Padding(
+        child: (widget.buildItemsContainer ?? defaultBuildItemsContainer)(
+            context, widget.direction, wrappedChildren),
+        padding: widget.padding,
+      );
+    }
     return SingleChildScrollView(
 //      key: _contentKey,
       scrollDirection: widget.scrollDirection,
@@ -1148,7 +1156,6 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
       padding: widget.padding,
       controller: _scrollController,
     );
-//    });
   }
 
   Widget defaultBuildItemsContainer(
