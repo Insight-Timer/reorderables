@@ -42,6 +42,7 @@ class ReorderableWrap extends StatefulWidget {
     this.header,
     this.footer,
     this.controller,
+    this.enabledDragging = true,
     @required this.children,
     @required this.onReorder,
     this.direction = Axis.horizontal,
@@ -238,6 +239,8 @@ class ReorderableWrap extends StatefulWidget {
   final int minMainAxisCount;
   final int maxMainAxisCount;
 
+  final bool enabledDragging;
+
   @override
   _ReorderableWrapState createState() => _ReorderableWrapState();
 }
@@ -288,6 +291,7 @@ class _ReorderableWrapState extends State<ReorderableWrap> {
           minMainAxisCount: widget.minMainAxisCount,
           maxMainAxisCount: widget.maxMainAxisCount,
           controller: widget.controller,
+          enableDragging: widget.enabledDragging,
         );
       },
     );
@@ -329,6 +333,7 @@ class _ReorderableWrapContent extends StatefulWidget {
     @required this.verticalDirection,
     @required this.minMainAxisCount,
     @required this.maxMainAxisCount,
+    @required this.enableDragging,
   });
 
   final Widget header;
@@ -354,6 +359,7 @@ class _ReorderableWrapContent extends StatefulWidget {
   final VerticalDirection verticalDirection;
   final int minMainAxisCount;
   final int maxMainAxisCount;
+  final bool enableDragging;
 
   @override
   _ReorderableWrapContentState createState() => _ReorderableWrapContentState();
@@ -782,7 +788,7 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
       // constrain the size of the feedback dragging widget.
       Widget child = this.widget.needsLongPressDraggable
           ? LongPressDraggable<int>(
-              maxSimultaneousDrags: 1,
+              maxSimultaneousDrags: widget.enableDragging ? 1 : 0,
               data: index,//toWrap.key,
               ignoringFeedbackSemantics: false,
               feedback: feedbackBuilder,
@@ -808,7 +814,7 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
               onDraggableCanceled: (Velocity velocity, Offset offset) => onDragEnded(),
             )
           : Draggable<int>(
-              maxSimultaneousDrags: 1,
+              maxSimultaneousDrags: widget.enableDragging ? 1 : 0,
               data: index,//toWrap.key,
               ignoringFeedbackSemantics: false,
               feedback: feedbackBuilder,
