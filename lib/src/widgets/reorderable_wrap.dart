@@ -60,8 +60,8 @@ class ReorderableWrap extends StatefulWidget {
     this.maxMainAxisCount,
     this.onNoReorder,
     this.onReorderStarted,
-    this.reorderAnimationDuration,
-    this.scrollAnimationDuration,
+    this.reorderAnimationDuration = const Duration(milliseconds: 200),
+    this.scrollAnimationDuration = const Duration(milliseconds: 200),
     this.ignorePrimaryScrollController = false,
   })  : assert(direction != null),
         assert(onReorder != null),
@@ -342,8 +342,8 @@ class _ReorderableWrapContent extends StatefulWidget {
     @required this.verticalDirection,
     @required this.minMainAxisCount,
     @required this.maxMainAxisCount,
-    this.reorderAnimationDuration = const Duration(milliseconds: 200),
-    this.scrollAnimationDuration = const Duration(milliseconds: 200),
+    @required this.reorderAnimationDuration,
+    @required this.scrollAnimationDuration,
     @required this.enableDragging,
   });
 
