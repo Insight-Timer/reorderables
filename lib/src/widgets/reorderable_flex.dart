@@ -53,8 +53,8 @@ class ReorderableFlex extends StatefulWidget {
     this.scrollController,
     this.needsLongPressDraggable = true,
     this.draggingWidgetOpacity = 0.2,
-    this.reorderAnimationDuration,
-    this.scrollAnimationDuration,
+    this.reorderAnimationDuration = const Duration(milliseconds: 200),
+    this.scrollAnimationDuration = const Duration(milliseconds: 200),
     this.ignorePrimaryScrollController = false,
   })  : assert(direction != null),
         assert(onReorder != null),
@@ -185,8 +185,8 @@ class _ReorderableFlexContent extends StatefulWidget {
     @required this.scrollController,
     @required this.needsLongPressDraggable,
     @required this.draggingWidgetOpacity,
-    this.reorderAnimationDuration = const Duration(milliseconds: 200),
-    this.scrollAnimationDuration = const Duration(milliseconds: 200),
+    @required this.reorderAnimationDuration,
+    @required this.scrollAnimationDuration,
   });
 
   final Widget header;
