@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:reorderables/reorderables.dart';
 
 class ColumnExample1 extends StatefulWidget {
@@ -13,10 +12,30 @@ class _ColumnExample1State extends State<ColumnExample1> {
   @override
   void initState() {
     super.initState();
-    _rows = List<Widget>.generate(
-        50,
-        (int index) => Text('This is row $index',
-            key: ValueKey(index), textScaleFactor: 1.5));
+
+    _rows = List<ReorderableWidget>.generate(
+        10,
+        (int index) => ReorderableWidget(
+              reorderable: true,
+              key: ValueKey(index),
+              child: Text('This is row $index', textScaleFactor: 1.5),
+            ));
+
+    _rows += <ReorderableWidget>[
+      ReorderableWidget(
+        reorderable: false,
+        key: ValueKey(10),
+        child: Text('This row is not reorderable', textScaleFactor: 2),
+      )
+    ];
+
+    _rows += List<ReorderableWidget>.generate(
+        40,
+        (int index) => ReorderableWidget(
+              reorderable: true,
+              key: ValueKey(11 + index),
+              child: Text('This is row $index', textScaleFactor: 1.5),
+            ));
   }
 
   @override
