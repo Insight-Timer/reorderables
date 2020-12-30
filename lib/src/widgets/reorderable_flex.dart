@@ -1056,8 +1056,8 @@ class ReorderableColumn extends ReorderableFlex {
     ScrollController scrollController,
     bool needsLongPressDraggable = true,
     double draggingWidgetOpacity = 0.2,
-    Duration reorderAnimationDuration,
-    Duration scrollAnimationDuration,
+    Duration reorderAnimationDuration = const Duration(milliseconds: 200),
+    Duration scrollAnimationDuration = const Duration(milliseconds: 200),
     bool ignorePrimaryScrollController = false,
   }) : super(
             key: key,

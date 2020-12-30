@@ -45,7 +45,7 @@ class ReorderableWrap extends StatefulWidget {
     @required this.onReorder,
     this.direction = Axis.horizontal,
     this.scrollDirection = Axis.vertical,
-    this.padding,
+    this.padding = EdgeInsets.zero,
     this.buildItemsContainer,
     this.buildDraggableFeedback,
     this.needsLongPressDraggable = true,
