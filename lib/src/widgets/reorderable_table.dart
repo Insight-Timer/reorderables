@@ -1,11 +1,10 @@
 //import 'dart:math' as math;
 import 'package:flutter/material.dart';
-//import 'package:flutter/widgets.dart';
 
-import './tabluar_flex.dart';
 import './reorderable_flex.dart';
-import '../rendering/tabluar_flex.dart';
+import './tabluar_flex.dart';
 import './typedefs.dart';
+import '../rendering/tabluar_flex.dart';
 
 class ReorderableTableRow extends TabluarRow {
   ReorderableTableRow({
@@ -70,7 +69,10 @@ class ReorderableTable extends StatelessWidget {
     @required this.onReorder,
     this.decorateDraggableFeedback,
     this.onNoReorder,
-    thi
+    thi,
+    this.reorderAnimationDuration,
+    this.scrollAnimationDuration,
+    this.ignorePrimaryScrollController = false,
   })  : assert(children != null),
         assert(defaultColumnWidth != null),
         assert(defaultVerticalAlignment != null),
@@ -178,6 +180,9 @@ class ReorderableTable extends StatelessWidget {
   final ReorderCallback onReorder;
   final NoReorderCallback onNoReorder;
   final DecorateDraggableFeedback decorateDraggableFeedback;
+  final Duration reorderAnimationDuration;
+  final Duration scrollAnimationDuration;
+  final bool ignorePrimaryScrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -255,7 +260,10 @@ class ReorderableTable extends StatelessWidget {
               borderRadius: BorderRadius.zero,
             ),
           );
-        });
+        },
+        reorderAnimationDuration: reorderAnimationDuration,
+        scrollAnimationDuration: scrollAnimationDuration,
+        ignorePrimaryScrollController: ignorePrimaryScrollController);
   }
 
   Widget defaultDecorateDraggableFeedback(
